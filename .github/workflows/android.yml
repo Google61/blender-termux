@@ -1,0 +1,26 @@
+name: Android CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Unpack prebuilt libs
+      run: |
+            mkdir -p /opt/lib
+            mv libs.tar.gz /opt/lib
+            cd /opt/lib
+            tar xf libs.tar.gz
+            export work=~/work/blender-termux/blender-termux
+            cd $work
+    - name: Get and build OpenImageIO
+      run: |
+            # first steps...
