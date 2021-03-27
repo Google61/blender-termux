@@ -37,6 +37,6 @@ jobs:
             cd $tarname
             mkdir built
             cd built
-            cmake $cargs ..
+            cmake .. $cargs
             make
             make install
