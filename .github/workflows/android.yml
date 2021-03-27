@@ -15,8 +15,8 @@ jobs:
     - uses: actions/checkout@v2
     - name: Unpack prebuilt libs, setup envs
       run: |
-            export inst=/opt/lib
-            export work=~/work/blender-termux/blender-termux
+            inst=/opt/lib
+            work=~/work/blender-termux/blender-termux
             tarball=libs.tar.gz
             mkdir -p $inst
             cd $inst
@@ -30,7 +30,7 @@ jobs:
             inst=/opt/lib
             work=~/work/blender-termux/blender-termux
             NDK="$ANDROID_SDK_ROOT/ndk-bundle"
-            cargs="-DCMAKE_PREFIX_PATH=$inst/$libname -DCMAKE_PREFIX_PATH=$inst/$libname -DCMAKE_INSTALL_PREFIX=$inst/$libname -DCMAKE_TOOLCHAIN_FILE=$NDK/build/cmake/android.toolchain.cmake -DANDROID_ABI=arm64-v8a -DANDROID_PLATFORM=android-24"
+            setargs() {export cargs="-DCMAKE_PREFIX_PATH=$inst/$libname -DCMAKE_PREFIX_PATH=$inst/$libname -DCMAKE_INSTALL_PREFIX=$inst/$libname -DCMAKE_TOOLCHAIN_FILE=$NDK/build/cmake/android.toolchain.cmake -DANDROID_ABI=arm64-v8a -DANDROID_PLATFORM=android-24"}
             wget -q $link
             tar xf $tarball
             echo $tarball
@@ -39,6 +39,7 @@ jobs:
             cd $tarname
             mkdir built
             cd built
+            setargs
             cmake .. $cargs
             make
             make install
