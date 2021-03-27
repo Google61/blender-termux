@@ -25,17 +25,17 @@ jobs:
     - name: Get and build libtiff, OpenImageIO 
       run: |
             link=https://gitlab.com/libtiff/libtiff/-/archive/master/libtiff-master.tar.gz
-            export tarball=$(basename "$link")
-            export tarname=$(echo "$tarball" | cut -d. -f1)
-            export inst=/opt/lib
-            export work=~/work/blender-termux/blender-termux
-            export NDK="$ANDROID_SDK_ROOT/ndk-bundle"
-            export cargs="-DCMAKE_PREFIX_PATH=$inst/$libname -DCMAKE_PREFIX_PATH=$inst/$libname -DCMAKE_INSTALL_PREFIX=$inst/$libname -DCMAKE_TOOLCHAIN_FILE=$NDK/build/cmake/android.toolchain.cmake -DANDROID_ABI=arm64-v8a -DANDROID_PLATFORM=android-24"
+            tarball=$(basename "$link")
+            tarname=$(echo "$tarball" | cut -d. -f1)
+            inst=/opt/lib
+            work=~/work/blender-termux/blender-termux
+            NDK="$ANDROID_SDK_ROOT/ndk-bundle"
+            cargs="-DCMAKE_PREFIX_PATH=$inst/$libname -DCMAKE_PREFIX_PATH=$inst/$libname -DCMAKE_INSTALL_PREFIX=$inst/$libname -DCMAKE_TOOLCHAIN_FILE=$NDK/build/cmake/android.toolchain.cmake -DANDROID_ABI=arm64-v8a -DANDROID_PLATFORM=android-24"
             wget -q $link
             tar xf $tarball
             echo $tarball
             echo $tarname
-            export libname=libtiff
+            libname=libtiff
             cd $tarname
             mkdir built
             cd built
