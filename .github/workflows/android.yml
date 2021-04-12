@@ -45,6 +45,7 @@ jobs:
             make install
     - name: Get and build Blender
       run: |
+            NDK="$ANDROID_SDK_ROOT/ndk-bundle"
             export TOOLCHAIN=$NDK/toolchains/llvm/prebuilt/linux-x86_64
             export TARGET=aarch64-linux-android
             export API=24
