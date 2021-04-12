@@ -57,5 +57,5 @@ jobs:
             export RANLIB=$TOOLCHAIN/bin/llvm-ranlib
             export STRIP=$TOOLCHAIN/bin/llvm-strip
             git clone https://git.blender.org/blender.git
-            sed -i 's/-lgcc_s -lgcc/g' blender/build_files/build_environment/install_deps.sh
+            sed -i 's/-lgcc_s -lgcc//g' blender/build_files/build_environment/install_deps.sh
             ./blender/build_files/build_environment/install_deps.sh --no-confirm --build-all
