@@ -43,3 +43,17 @@ jobs:
             cmake .. $cargs
             make
             make install
+    - name: Get and build Blender
+      run: |
+            export TOOLCHAIN=$NDK/toolchains/llvm/prebuilt/linux-x86_64
+            export TARGET=aarch64-linux-android
+            export API=24
+            export AR=$TOOLCHAIN/bin/llvm-ar
+            export CC=$TOOLCHAIN/bin/$TARGET$API-clang
+            export AS=$CC
+            export CXX=$TOOLCHAIN/bin/$TARGET$API-clang++
+            export LD=$TOOLCHAIN/bin/ld
+            export RANLIB=$TOOLCHAIN/bin/llvm-ranlib
+            export STRIP=$TOOLCHAIN/bin/llvm-strip
+            git clone https://git.blender.org/blender.git
+            ./blender/build_files/build_environment/install_deps.sh --no-confirm
