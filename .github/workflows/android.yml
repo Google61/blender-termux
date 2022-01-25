@@ -57,6 +57,10 @@ jobs:
             export LD=$TOOLCHAIN/bin/ld
             export RANLIB=$TOOLCHAIN/bin/llvm-ranlib
             export STRIP=$TOOLCHAIN/bin/llvm-strip
+            sudo apt update
+            sudo apt install software-properties-common
+            sudo add-apt-repository ppa:deadsnakes/ppa
+            sudo apt install python3.9
             git clone https://git.blender.org/blender.git
             sed -i 's/-lgcc_s -lgcc//g' blender/build_files/build_environment/install_deps.sh
             sed -i 's/configure/configure --target=$TARGET --host=$TARGET --build=x86_64-linux-gnu/g' blender/build_files/build_environment/install_deps.sh
